@@ -1,0 +1,31 @@
+{
+  "name": "Image Size Checker",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "(Warning Alpha Version) Checks page for images that are not resized for web.",
+  "homepage_url": "",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "script": "src/bg/background.js"
+  },
+    "content_scripts": [
+        {
+            "matches": ["http://*/*"],
+            "js": ["js/jquery/jquery.min.js","js/image_checker.js"]
+        }
+    ],
+  "page_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "page action demo",
+    "default_popup": "src/page_action/page_action.html"
+  },
+  "permissions": [
+    "tabs"
+  ],
+  "content_security_policy": "default-src 'none'; style-src 'self'; script-src 'self';"
+}
