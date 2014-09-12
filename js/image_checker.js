@@ -12,7 +12,7 @@ var findImages = function () {
         function checkImageSize(id){
             jQuery(id).each(function () {
                 if (this.naturalWidth > 1025 || (((this.naturalWidth / this.width) >= 2) && (this.src.indexOf('themes') <= 0))) {
-                    console.log('run');
+                    console.log('found image');
                     $run = true;
                     $list[this.src] = [
                         this.naturalWidth,
@@ -28,7 +28,7 @@ var findImages = function () {
         //checkImageSize("#content img");
         //checkImageSize("#content-main img");
         if ($run) {
-            console.log('set css');
+            console.log('run');
             var css = '.red-border{border:5px solid red}.warning_overlay{position:relative;}.warning_message{width:100%;position:relative;display:block;opacity:0.7;text-align:center;bottom:0;left:0;background-color:red;font-family:arial;font-size:1em;color:#fff}.warning_content{height:70px;padding:5px;line-height:20px;}.warning_content a{color:#fff}.warning_message,img{cursor:pointer}',
                 head = document.head || document.getElementsByTagName('head')[0],
                 style = document.createElement('style');
@@ -62,7 +62,7 @@ var findImages = function () {
                     margin = "-" + warning_content_height + "px auto 0 auto";
 
                 //Set the warning_message from the img alt attribute
-                o.find(".warning_content").html("Image is not sized properly.<br/>File Size: "+naturalWidth+"x"+naturalHeight+"<br/><a href='#'>Resolve</a></p>");
+                o.find(".warning_content").html("Image is not sized properly.<br/>File Size: "+naturalWidth+"x"+naturalHeight+"<br/>Display Size: "+width+"x"+height+"");
 
                 //Align the warning_message with the image
                 o.css("width", jQuery(this).width() + 10);
@@ -86,8 +86,10 @@ var findImages = function () {
 
                 */
             });
+            console.log($list);
+        } else {
+            console.log('no items found')
         }
-        console.log($list);
         return $list;
     } else {
         console.log('no jquery');
